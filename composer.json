@@ -1,7 +1,7 @@
 {
     "name": "icecave/agenda",
-    "description": "This package needs a description!",
-    "keywords": [],
+    "description": "A schedule parser with cron syntax support.",
+    "keywords": ["schedule", "cron", "crontab", "parser", "every", "repeat", "timer"],
     "homepage": "https://github.com/IcecaveStudios/agenda",
     "license": "MIT",
     "authors": [
@@ -12,12 +12,11 @@
         }
     ],
     "require": {
-        "php": ">=5.3",
-        "eloquent/asplode": "~1"
+        "php": ">=5.3"
     },
     "require-dev": {
         "eloquent/typhoon": "~0.9",
-        "icecave/archer": "~0.3"
+        "icecave/archer": "~0.4"
     },
     "autoload": {
         "psr-0": {
