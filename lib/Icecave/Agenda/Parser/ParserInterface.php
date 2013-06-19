@@ -7,13 +7,13 @@ interface ParserInterface
      * @param string $expression
      *
      * @return ScheduleInterface
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function parse($expression);
 
     /**
      * @param string $expression
-     * @param ScheduleInterface &$schedule = null Th schedule to store the parsed result in.
+     * @param ScheduleInterface &$schedule = null The schedule to store the parsed result in.
      *
      * @return boolean True if the expression parsed successfully.
      */

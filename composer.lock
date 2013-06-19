@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5578d9ffcd1a009f18cbeab181ceb17e",
+    "hash": "d4b91594ee15e4976df8676f42b5782a",
     "packages": [
         {
             "name": "eloquent/asplode",
@@ -58,25 +58,26 @@
         },
         {
             "name": "icecave/chrono",
-            "version": "0.2.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IcecaveStudios/chrono.git",
-                "reference": "0.2.0"
+                "reference": "737e653647a2d683128c03a656f9ed99678e21c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/chrono/zipball/0.2.0",
-                "reference": "0.2.0",
+                "url": "https://api.github.com/repos/IcecaveStudios/chrono/zipball/737e653647a2d683128c03a656f9ed99678e21c8",
+                "reference": "737e653647a2d683128c03a656f9ed99678e21c8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "icecave/parity": ">=0.1,<1.0",
+                "php": ">=5.3"
             },
             "require-dev": {
                 "eloquent/liberator": ">=1.0,<2.0",
                 "eloquent/typhoon": ">=0.9,<1.0",
-                "icecave/archer": ">=0.3,<1.0"
+                "icecave/archer": ">=0.4,<1.0"
             },
             "type": "library",
             "extra": {
@@ -101,9 +102,13 @@
                     "name": "James Harris",
                     "email": "james.harris@icecave.com.au",
                     "homepage": "https://github.com/jmalloc"
+                },
+                {
+                    "name": "Kevin Millar",
+                    "email": "koden.km@gmail.com"
                 }
             ],
-            "description": "PHP date and time abstractions that are decoupled from the system clock.",
+            "description": "A date & time library that is decoupled from the system clock.",
             "homepage": "https://github.com/IcecaveStudios/chrono",
             "keywords": [
                 "chrono",
@@ -113,7 +118,7 @@
                 "time",
                 "timer"
             ],
-            "time": "2013-05-13 23:38:20"
+            "time": "2013-06-18 04:36:13"
         },
         {
             "name": "icecave/isolator",
@@ -163,6 +168,113 @@
                 "unit"
             ],
             "time": "2013-06-04 05:00:29"
+        },
+        {
+            "name": "icecave/parity",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IcecaveStudios/parity.git",
+                "reference": "0.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IcecaveStudios/parity/zipball/0.1.0",
+                "reference": "0.1.0",
+                "shasum": ""
+            },
+            "require": {
+                "icecave/repr": ">=1.0,<2.0",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "eloquent/typhoon": ">=0.9,<1.0",
+                "icecave/archer": ">=0.3,<1.0"
+            },
+            "type": "library",
+            "extra": {
+                "typhoon": {
+                    "output-path": "lib-typhoon",
+                    "validator-namespace": "Icecave\\Parity\\TypeCheck",
+                    "use-native-callable": false
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Icecave\\Parity": "lib",
+                    "Icecave\\Parity\\TypeCheck": "lib-typhoon"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Harris",
+                    "email": "james.harris@icecave.com.au",
+                    "homepage": "https://github.com/jmalloc"
+                }
+            ],
+            "description": "A comparator library for PHP.",
+            "homepage": "https://github.com/IcecaveStudios/parity",
+            "keywords": [
+                "compare",
+                "comparison",
+                "equal",
+                "equality",
+                "greater",
+                "less",
+                "sort",
+                "sorting"
+            ],
+            "time": "2013-05-29 08:00:22"
+        },
+        {
+            "name": "icecave/repr",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IcecaveStudios/repr.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/IcecaveStudios/repr/archive/1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phake/phake": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Icecave\\Repr": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Harris",
+                    "email": "james.harris@icecave.com.au",
+                    "homepage": "https://github.com/jmalloc"
+                }
+            ],
+            "description": "Human readable string representations of everything.",
+            "homepage": "https://github.com/IcecaveStudios/repr",
+            "keywords": [
+                "repr",
+                "representation",
+                "string"
+            ],
+            "time": "2013-01-11 00:04:43"
         }
     ],
     "packages-dev": [
@@ -711,52 +823,6 @@
             "time": "2013-01-14 14:06:52"
         },
         {
-            "name": "icecave/repr",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/IcecaveStudios/repr.git",
-                "reference": "1.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/IcecaveStudios/repr/archive/1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phake/phake": "1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Icecave\\Repr": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "James Harris",
-                    "email": "james.harris@icecave.com.au",
-                    "homepage": "https://github.com/jmalloc"
-                }
-            ],
-            "description": "Human readable string representations of everything.",
-            "homepage": "https://github.com/IcecaveStudios/repr",
-            "keywords": [
-                "repr",
-                "representation",
-                "string"
-            ],
-            "time": "2013-01-11 00:04:43"
-        },
-        {
             "name": "nikic/php-parser",
             "version": "v0.9.3",
             "source": {
@@ -996,17 +1062,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "v2.3.0-RC1"
+                "reference": "v2.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.3.0-RC1",
-                "reference": "v2.3.0-RC1",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.3.1",
+                "reference": "v2.3.1",
                 "shasum": ""
             },
             "require": {
@@ -1290,9 +1356,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "icecave/chrono": 20
+    },
     "platform": {
         "php": ">=5.3"
     },

@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.3",
         "eloquent/asplode": "~1",
-        "icecave/chrono": "~0.2"
+        "icecave/chrono": "dev-develop@dev"
     },
     "require-dev": {
         "eloquent/typhoon": "~0.9",

@@ -5,11 +5,11 @@ use Icecave\Chrono\DateTime;
 use Icecave\Chrono\Interval\Interval;
 use PHPUnit_Framework_TestCase;
 
-class HourlyScheduleTest extends PHPUnit_Framework_TestCase
+class WeeklyScheduleTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->schedule = new HourlySchedule;
+        $this->schedule = new WeeklySchedule;
     }
 
     /**
@@ -26,9 +26,11 @@ class HourlyScheduleTest extends PHPUnit_Framework_TestCase
     public function validFirstEventFromDates()
     {
         return array(
-            'Exact match'   => array('2013-10-20 10:00:00', '2013-10-20 10:00:00'),
-            'Time offset'   => array('2013-10-20 10:11:12', '2013-10-20 11:00:00'),
-            'Wrap day'      => array('2013-10-20 23:11:12', '2013-10-21 00:00:00'),
+            'Exact match'       => array('2013-10-20 00:00:00', '2013-10-20 00:00:00'),
+            'Time offset'       => array('2013-10-20 10:11:12', '2013-10-27 00:00:00'),
+            'Date offset'       => array('2013-10-25 00:00:00', '2013-10-27 00:00:00'),
+            'Date time offset'  => array('2013-10-25 10:11:12', '2013-10-27 00:00:00'),
+            'Wrap month'        => array('2013-10-30 10:11:12', '2013-11-03 00:00:00'),
         );
     }
 
@@ -47,9 +49,11 @@ class HourlyScheduleTest extends PHPUnit_Framework_TestCase
     public function validFirstEventAfterDates()
     {
         return array(
-            'Exact hour'    => array('2013-10-20 10:00:00', '2013-10-20 11:00:00'),
-            'Time offset'   => array('2013-10-20 10:11:12', '2013-10-20 11:00:00'),
-            'Wrap day'      => array('2013-10-20 23:11:12', '2013-10-21 00:00:00'),
+            'Exact day'         => array('2013-10-20 00:00:00', '2013-10-27 00:00:00'),
+            'Time offset'       => array('2013-10-20 10:20:30', '2013-10-27 00:00:00'),
+            'Date offset'       => array('2013-10-25 00:00:00', '2013-10-27 00:00:00'),
+            'Date time offset'  => array('2013-10-25 10:20:30', '2013-10-27 00:00:00'),
+            'Wrap month'        => array('2013-10-27 10:20:30', '2013-11-03 00:00:00'),
         );
     }
 
@@ -71,9 +75,11 @@ class HourlyScheduleTest extends PHPUnit_Framework_TestCase
     public function validFirstEventDuringDates()
     {
         return array(
-            'Exact hour'    => array('2013-10-20 10:00:00', '2013-10-20 15:00:00', '2013-10-20 10:00:00'),
-            'Time offset'   => array('2013-10-20 10:20:30', '2013-10-20 15:20:30', '2013-10-20 11:00:00'),
-            'Wrap day'      => array('2013-10-20 23:11:12', '2013-10-21 15:00:00', '2013-10-21 00:00:00'),
+            'Exact week'        => array('2013-10-20 00:00:00', '2013-10-30 00:00:00', '2013-10-20 00:00:00'),
+            'Time offset'       => array('2013-10-20 10:20:30', '2013-10-30 10:20:30', '2013-10-27 00:00:00'),
+            'Date offset'       => array('2013-10-25 00:00:00', '2013-10-30 00:00:00', '2013-10-27 00:00:00'),
+            'Date time offset'  => array('2013-10-20 10:20:30', '2013-10-30 10:20:30', '2013-10-27 00:00:00'),
+            'Wrap month'        => array('2013-10-30 10:20:30', '2013-11-30 10:20:30', '2013-11-03 00:00:00'),
         );
     }
 
@@ -94,8 +100,9 @@ class HourlyScheduleTest extends PHPUnit_Framework_TestCase
     public function invalidFirstEventDuringDates()
     {
         return array(
-            'No full hour'          => array('2013-10-20 10:20:30', '2013-10-20 10:30:30'),
-            'Exact duration end'    => array('2013-10-20 10:20:30', '2013-10-20 11:00:00'),
+            'No full week'          => array('2013-10-20 10:20:30', '2013-10-25 10:20:30'),
+            'Exact duration end'    => array('2013-10-20 10:20:30', '2013-10-27 00:00:00'),
         );
     }
 }
+

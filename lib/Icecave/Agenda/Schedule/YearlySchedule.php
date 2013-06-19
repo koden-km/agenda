@@ -5,9 +5,9 @@ use Icecave\Chrono\DateTime;
 use Icecave\Chrono\TimePointInterface;
 
 /**
- * Run once an hour at the beginning of the hour.
+ * Run once a year at midnight in the morning of January 1.
  */
-class HourlySchedule extends AbstractSchedule
+class YearlySchedule extends AbstractSchedule
 {
     /**
      * @param TimePointInterface $timePoint
@@ -16,17 +16,20 @@ class HourlySchedule extends AbstractSchedule
      */
     public function firstEventFrom(TimePointInterface $timePoint)
     {
-        if ($timePoint->minute() === 0 &&
+        if ($timePoint->month() === 1 &&
+            $timePoint->day() === 1 &&
+            $timePoint->hour() === 0 &&
+            $timePoint->minute() === 0 &&
             $timePoint->second() === 0
         ) {
             return $timePoint;
         }
 
         return new DateTime(
-            $timePoint->year(),
-            $timePoint->month(),
-            $timePoint->day(),
-            $timePoint->hour() + 1,
+            $timePoint->year() + 1,
+            1,
+            1,
+            0,
             0,
             0
         );
