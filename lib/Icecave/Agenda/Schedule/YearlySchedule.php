@@ -1,6 +1,7 @@
 <?php
 namespace Icecave\Agenda\Schedule;
 
+use Icecave\Agenda\TypeCheck\TypeCheck;
 use Icecave\Chrono\DateTime;
 use Icecave\Chrono\TimePointInterface;
 
@@ -9,6 +10,12 @@ use Icecave\Chrono\TimePointInterface;
  */
 class YearlySchedule extends AbstractSchedule
 {
+    public function __construct()
+    {
+        $this->typeCheck = TypeCheck::get(__CLASS__, func_get_args());
+        parent::__construct();
+    }
+
     /**
      * @param TimePointInterface $timePoint
      *
@@ -16,6 +23,8 @@ class YearlySchedule extends AbstractSchedule
      */
     public function firstEventFrom(TimePointInterface $timePoint)
     {
+        TypeCheck::get(__CLASS__)->firstEventFrom(func_get_args());
+
         if ($timePoint->month() === 1 &&
             $timePoint->day() === 1 &&
             $timePoint->hour() === 0 &&
@@ -34,4 +43,6 @@ class YearlySchedule extends AbstractSchedule
             0
         );
     }
+
+    private $typeCheck;
 }

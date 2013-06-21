@@ -1,6 +1,7 @@
 <?php
 namespace Icecave\Agenda\Schedule;
 
+use Icecave\Agenda\TypeCheck\TypeCheck;
 use Icecave\Chrono\DateTime;
 use Icecave\Chrono\Detail\Calendar;
 use Icecave\Chrono\TimePointInterface;
@@ -10,6 +11,12 @@ use Icecave\Chrono\TimePointInterface;
  */
 class WeeklySchedule extends AbstractSchedule
 {
+    public function __construct()
+    {
+        $this->typeCheck = TypeCheck::get(__CLASS__, func_get_args());
+        parent::__construct();
+    }
+
     /**
      * @param TimePointInterface $timePoint
      *
@@ -17,6 +24,9 @@ class WeeklySchedule extends AbstractSchedule
      */
     public function firstEventFrom(TimePointInterface $timePoint)
     {
+        TypeCheck::get(__CLASS__)->firstEventFrom(func_get_args());
+
+        // TO DO: add some better public methods for day of week to Chrono/DateInterface
         $dayOfWeek = Calendar::dayOfWeek(
             $timePoint->year(),
             $timePoint->month(),
@@ -48,4 +58,6 @@ class WeeklySchedule extends AbstractSchedule
             0
         );
     }
+
+    private $typeCheck;
 }

@@ -1,6 +1,8 @@
 <?php
 namespace Icecave\Agenda\Parser;
 
+use Icecave\Agenda\Schedule\ScheduleInterface;
+
 interface ParserInterface
 {
     /**
@@ -13,7 +15,7 @@ interface ParserInterface
 
     /**
      * @param string $expression
-     * @param ScheduleInterface &$schedule = null The schedule to store the parsed result in.
+     * @param ScheduleInterface|null &$schedule The schedule to store the parsed result in.
      *
      * @return boolean True if the expression parsed successfully.
      */

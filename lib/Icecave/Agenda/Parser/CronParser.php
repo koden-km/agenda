@@ -1,11 +1,13 @@
 <?php
 namespace Icecave\Agenda\Parser;
 
+use Icecave\Agenda\Schedule\ScheduleInterface;
 use Icecave\Agenda\Schedule\HourlySchedule;
 use Icecave\Agenda\Schedule\DailySchedule;
 use Icecave\Agenda\Schedule\WeeklySchedule;
 use Icecave\Agenda\Schedule\MonthlySchedule;
 use Icecave\Agenda\Schedule\YearlySchedule;
+use Icecave\Agenda\TypeCheck\TypeCheck;
 use InvalidArgumentException;
 
 /**
@@ -15,6 +17,7 @@ class CronParser implements ParserInterface
 {
     public function __construct()
     {
+        $this->typeCheck = TypeCheck::get(__CLASS__, func_get_args());
     }
 
     /**
@@ -25,6 +28,8 @@ class CronParser implements ParserInterface
      */
     public function parse($expression)
     {
+        TypeCheck::get(__CLASS__)->parse(func_get_args());
+
         $schedule = null;
         if (!$this->tryParse($expression, $schedule)) {
             throw new InvalidArgumentException('Invalid cron expression: "' . $expression . '".');
@@ -35,12 +40,14 @@ class CronParser implements ParserInterface
 
     /**
      * @param string $expression
-     * @param ScheduleInterface &$schedule = null The schedule to store the parsed result in.
+     * @param ScheduleInterface|null &$schedule The schedule to store the parsed result in.
      *
      * @return boolean True if the expression parsed successfully.
      */
     public function tryParse($expression, ScheduleInterface &$schedule = null)
     {
+        TypeCheck::get(__CLASS__)->tryParse(func_get_args());
+
         if ($this->tryParseConstantFormat($expression, $schedule)) {
             return true;
         } else if ($this->tryParseColumnFormat($expression, $schedule)) {
@@ -60,6 +67,8 @@ class CronParser implements ParserInterface
      */
     public function tryParseConstantFormat($expression, ScheduleInterface &$schedule = null)
     {
+        TypeCheck::get(__CLASS__)->tryParseConstantFormat(func_get_args());
+
         if (in_array($expression, array('@hourly', '0 * * * *'))) {
             $schedule = new HourlySchedule;
         } else if (in_array($expression, array('@daily', '0 0 * * *'))) {
@@ -85,8 +94,12 @@ class CronParser implements ParserInterface
      */
     public function tryParseColumnFormat($expression, ScheduleInterface &$schedule = null)
     {
+        TypeCheck::get(__CLASS__)->tryParseColumnFormat(func_get_args());
+
         // TO DO
 
         return false;
     }
+
+    private $typeCheck;
 }
