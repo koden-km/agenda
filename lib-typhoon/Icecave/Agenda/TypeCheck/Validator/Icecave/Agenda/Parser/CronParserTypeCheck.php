@@ -48,7 +48,7 @@ class CronParserTypeCheck extends \Icecave\Agenda\TypeCheck\AbstractValidator
         }
     }
 
-    public function tryParseConstantFormat(array $arguments)
+    public function tryParsePredefinedFormat(array $arguments)
     {
         $argumentCount = \count($arguments);
         if ($argumentCount < 1) {

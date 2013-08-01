@@ -48,7 +48,7 @@ class CronParser implements ParserInterface
     {
         TypeCheck::get(__CLASS__)->tryParse(func_get_args());
 
-        if ($this->tryParseConstantFormat($expression, $schedule)) {
+        if ($this->tryParsePredefinedFormat($expression, $schedule)) {
             return true;
         } else if ($this->tryParseColumnFormat($expression, $schedule)) {
             return true;
@@ -65,9 +65,9 @@ class CronParser implements ParserInterface
      *
      * @return boolean
      */
-    public function tryParseConstantFormat($expression, ScheduleInterface &$schedule = null)
+    public function tryParsePredefinedFormat($expression, ScheduleInterface &$schedule = null)
     {
-        TypeCheck::get(__CLASS__)->tryParseConstantFormat(func_get_args());
+        TypeCheck::get(__CLASS__)->tryParsePredefinedFormat(func_get_args());
 
         if (in_array($expression, array('@hourly', '0 * * * *'))) {
             $schedule = new HourlySchedule;
