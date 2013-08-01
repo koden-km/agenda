@@ -15,6 +15,19 @@ use InvalidArgumentException;
  */
 class CronParser implements ParserInterface
 {
+    const PREDEFINED_HOURLY   = '@hourly';
+    const PREDEFINED_DAILY    = '@daily';
+    const PREDEFINED_WEEKLY   = '@weekly';
+    const PREDEFINED_MONTHLY  = '@monthly';
+    const PREDEFINED_YEARLY   = '@yearly';
+    const PREDEFINED_ANNUALLY = '@annually'; // Same as YEARLY
+
+    const EXPRESSION_HOURLY   = '0 * * * *';
+    const EXPRESSION_DAILY    = '0 0 * * *';
+    const EXPRESSION_WEEKLY   = '0 0 * * 0';
+    const EXPRESSION_MONTHLY  = '0 0 1 * *';
+    const EXPRESSION_YEARLY   = '0 0 1 1 *';
+
     public function __construct()
     {
         $this->typeCheck = TypeCheck::get(__CLASS__, func_get_args());
@@ -50,7 +63,7 @@ class CronParser implements ParserInterface
 
         if ($this->tryParsePredefinedFormat($expression, $schedule)) {
             return true;
-        } else if ($this->tryParseColumnFormat($expression, $schedule)) {
+        } else if ($this->tryParseExpressionFormat($expression, $schedule)) {
             return true;
         }
 
@@ -69,15 +82,44 @@ class CronParser implements ParserInterface
     {
         TypeCheck::get(__CLASS__)->tryParsePredefinedFormat(func_get_args());
 
-        if (in_array($expression, array('@hourly', '0 * * * *'))) {
+        if ($expression === self::PREDEFINED_HOURLY) {
             $schedule = new HourlySchedule;
-        } else if (in_array($expression, array('@daily', '0 0 * * *'))) {
+        } else if ($expression === self::PREDEFINED_DAILY) {
             $schedule = new DailySchedule;
-        } else if (in_array($expression, array('@weekly', '0 0 * * 0'))) {
+        } else if ($expression === self::PREDEFINED_WEEKLY) {
             $schedule = new WeeklySchedule;
-        } else if (in_array($expression, array('@monthly', '0 0 1 * *'))) {
+        } else if ($expression === self::PREDEFINED_MONTHLY) {
             $schedule = new MonthlySchedule;
-        } else if (in_array($expression, array('@yearly', '@annually', '0 0 1 1 *'))) {
+        } else if ($expression === self::PREDEFINED_YEARLY || $expression === self::PREDEFINED_ANNUALLY) {
+            $schedule = new YearlySchedule;
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @link https://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions
+     *
+     * @param string $expression
+     * @param ScheduleInterface|null &$schedule
+     *
+     * @return boolean
+     */
+    public function tryParsePredefinedExpressionFormat($expression, ScheduleInterface &$schedule = null)
+    {
+        TypeCheck::get(__CLASS__)->tryParsePredefinedExpressionFormat(func_get_args());
+
+        if ($expression === self::EXPRESSION_HOURLY) {
+            $schedule = new HourlySchedule;
+        } else if ($expression === self::EXPRESSION_DAILY) {
+            $schedule = new DailySchedule;
+        } else if ($expression === self::EXPRESSION_WEEKLY) {
+            $schedule = new WeeklySchedule;
+        } else if ($expression === self::EXPRESSION_MONTHLY) {
+            $schedule = new MonthlySchedule;
+        } else if ($expression === self::EXPRESSION_YEARLY) {
             $schedule = new YearlySchedule;
         } else {
             return false;
@@ -92,11 +134,22 @@ class CronParser implements ParserInterface
      *
      * @return boolean
      */
-    public function tryParseColumnFormat($expression, ScheduleInterface &$schedule = null)
+    public function tryParseExpressionFormat($expression, ScheduleInterface &$schedule = null)
     {
-        TypeCheck::get(__CLASS__)->tryParseColumnFormat(func_get_args());
+        TypeCheck::get(__CLASS__)->tryParseExpressionFormat(func_get_args());
 
-        // TO DO
+        if ($this->tryParsePredefinedExpressionFormat($expression, $schedule)) {
+            return true;
+        }
+
+        $parts = preg_split('/\s+/', $expression);
+        if (count($parts) !== 5) {
+            throw new InvalidArgumentException('Invalid cron expression: "' . $expression . '".');
+        }
+
+        list($expMinute, $expHour, $expDayOfMonth, $expMonth, $expDayOfWeek) = $parts;
+
+        // TO DO: generic expression parsing
 
         return false;
     }
