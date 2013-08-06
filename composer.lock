@@ -7,24 +7,24 @@
     "packages": [
         {
             "name": "eloquent/asplode",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/asplode.git",
-                "reference": "1.1.0"
+                "reference": "1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/asplode/zipball/1.1.0",
-                "reference": "1.1.0",
+                "url": "https://api.github.com/repos/eloquent/asplode/zipball/1.1.1",
+                "reference": "1.1.1",
                 "shasum": ""
             },
             "require": {
-                "icecave/isolator": ">=2.0,<3.0",
+                "icecave/isolator": "~2",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "icecave/archer": ">=0.2,<1.0"
+                "icecave/archer": "1.0.0-alpha.2"
             },
             "type": "library",
             "autoload": {
@@ -54,7 +54,7 @@
                 "handler",
                 "handling"
             ],
-            "time": "2013-06-11 03:08:01"
+            "time": "2013-08-01 10:46:05"
         },
         {
             "name": "icecave/chrono",
@@ -62,22 +62,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/IcecaveStudios/chrono.git",
-                "reference": "737e653647a2d683128c03a656f9ed99678e21c8"
+                "reference": "17bd985dff2981b98c53a6ce2fa5a6e1ce1f8b22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/chrono/zipball/737e653647a2d683128c03a656f9ed99678e21c8",
-                "reference": "737e653647a2d683128c03a656f9ed99678e21c8",
+                "url": "https://api.github.com/repos/IcecaveStudios/chrono/zipball/17bd985dff2981b98c53a6ce2fa5a6e1ce1f8b22",
+                "reference": "17bd985dff2981b98c53a6ce2fa5a6e1ce1f8b22",
                 "shasum": ""
             },
             "require": {
-                "icecave/parity": ">=0.1,<1.0",
+                "icecave/parity": "~0.1",
                 "php": ">=5.3"
             },
             "require-dev": {
-                "eloquent/liberator": ">=1.0,<2.0",
-                "eloquent/typhoon": ">=0.9,<1.0",
-                "icecave/archer": ">=0.4,<1.0"
+                "eloquent/liberator": "~1",
+                "eloquent/typhoon": "~0.9",
+                "icecave/archer": "~0.4"
             },
             "type": "library",
             "extra": {
@@ -118,7 +118,7 @@
                 "time",
                 "timer"
             ],
-            "time": "2013-06-18 04:36:13"
+            "time": "2013-08-01 08:17:59"
         },
         {
             "name": "icecave/isolator",
@@ -595,16 +595,16 @@
         },
         {
             "name": "icecave/archer",
-            "version": "0.4.2",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IcecaveStudios/archer.git",
-                "reference": "0.4.2"
+                "reference": "0.5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IcecaveStudios/archer/zipball/0.4.2",
-                "reference": "0.4.2",
+                "url": "https://api.github.com/repos/IcecaveStudios/archer/zipball/0.5.0",
+                "reference": "0.5.0",
                 "shasum": ""
             },
             "require": {
@@ -612,11 +612,11 @@
                 "php": ">=5.3",
                 "sami/sami": ">=1.0,<2.0",
                 "symfony/console": ">=2.0,<3.0",
-                "symfony/event-dispatcher": ">=2.1,<3.0",
                 "symfony/process": ">=2.0,<3.0"
             },
             "require-dev": {
-                "eloquent/liberator": ">=1.0,<2.0"
+                "eloquent/liberator": ">=1.0,<2.0",
+                "symfony/event-dispatcher": ">=2.1,<3.0"
             },
             "suggest": {
                 "ext-openssl": "OpenSSL is required to encrypt GitHub OAuth tokens for artifact publication."
@@ -647,7 +647,7 @@
                     "homepage": "https://github.com/jmalloc"
                 }
             ],
-            "description": "PHP projects by convention.",
+            "description": "Testing, CI and documentation of PHP projects by convention.",
             "homepage": "https://github.com/IcecaveStudios/archer",
             "keywords": [
                 "api",
@@ -662,7 +662,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2013-06-05 00:14:36"
+            "time": "2013-06-24 03:01:54"
         },
         {
             "name": "icecave/collections",
@@ -1009,24 +1009,24 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "v2.3.1"
+                "reference": "v2.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.3.1",
-                "reference": "v2.3.1",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.3.2",
+                "reference": "v2.3.2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/event-dispatcher": ">=2.1,<3.0"
+                "symfony/event-dispatcher": "~2.1"
             },
             "suggest": {
                 "symfony/event-dispatcher": ""
@@ -1058,75 +1058,21 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-06-11 07:15:14"
-        },
-        {
-            "name": "symfony/event-dispatcher",
-            "version": "v2.3.1",
-            "target-dir": "Symfony/Component/EventDispatcher",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "v2.3.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.3.1",
-                "reference": "v2.3.1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "symfony/dependency-injection": ">=2.0,<3.0"
-            },
-            "suggest": {
-                "symfony/dependency-injection": "",
-                "symfony/http-kernel": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\EventDispatcher\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony EventDispatcher Component",
-            "homepage": "http://symfony.com",
-            "time": "2013-05-13 14:36:40"
+            "time": "2013-07-11 19:36:36"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "v2.3.1"
+                "reference": "v2.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/v2.3.1",
-                "reference": "v2.3.1",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/v2.3.2",
+                "reference": "v2.3.2",
                 "shasum": ""
             },
             "require": {
@@ -1163,17 +1109,17 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "v2.3.1"
+                "reference": "v2.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/v2.3.1",
-                "reference": "v2.3.1",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/v2.3.2",
+                "reference": "v2.3.2",
                 "shasum": ""
             },
             "require": {
@@ -1206,21 +1152,21 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2013-06-02 12:05:51"
+            "time": "2013-07-01 12:17:23"
         },
         {
             "name": "symfony/process",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "v2.3.1"
+                "reference": "v2.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/v2.3.1",
-                "reference": "v2.3.1",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/v2.3.2",
+                "reference": "v2.3.2",
                 "shasum": ""
             },
             "require": {
@@ -1253,21 +1199,21 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-06 20:03:44"
+            "time": "2013-07-01 12:24:43"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "v2.3.1"
+                "reference": "v2.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.3.1",
-                "reference": "v2.3.1",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/v2.3.2",
+                "reference": "v2.3.2",
                 "shasum": ""
             },
             "require": {
@@ -1300,7 +1246,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-10 18:12:13"
+            "time": "2013-07-11 19:36:36"
         },
         {
             "name": "twig/twig",
