@@ -163,7 +163,7 @@ class CronParser implements ParserInterface
         );
 
         // Resolve against a time point to verify.
-        $schedule->firstEventFrom(new DateTime(2010, 1, 1));
+        $schedule->firstEventFrom(new DateTime(2010, 12, 31, 23, 59));
 
         return true;
     }

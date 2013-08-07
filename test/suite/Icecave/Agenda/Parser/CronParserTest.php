@@ -92,14 +92,12 @@ class CronParserTest extends PHPUnit_Framework_TestCase
     public function invalidExpressions()
     {
         return array(
-            'Empty expression'                      => array(''),
-            'Not enough digits'                     => array('0 1'),
-            'Too many digits'                       => array('0 1 2 3 4 5 6'),
-
-            'Invalid integer range hours'           => array(' * 25  *  *  *', '25'),
-            'Invalid integer range day of month'    => array(' *  * 32  *  *', '32'),
-            'Invalid integer range month'           => array(' *  *  * 13  *', '13'),
-            'Invalid integer range day of week'     => array(' *  *  *  *  8', '8'),
+            'Empty expression'              => array(''),
+            'Not enough digits'             => array('1 2'),
+            'Too many digits (no year)'     => array('1 2 3 4 5 6'),
+            'Too many digits (with year)'   => array('1 2 3 4 5 6 7'),
+            'Starts with space'             => array(' 1 2 3 4 5', ' 1 2 3 4 5'),
+            'Ends with space'               => array('1 2 3 4 5 ', '1 2 3 4 5 '),
         );
     }
 
@@ -121,7 +119,11 @@ class CronParserTest extends PHPUnit_Framework_TestCase
             'Invalid character month'               => array('* * * X *', 'X'),
             'Invalid character day of week'         => array('* * * * X', 'X'),
 
-            'Invalid integer range minutes'         => array('61  *  *  *  *', '61'),
+            'Invalid integer range minutes'         => array('61 *  *  *  *', '61'),
+            'Invalid integer range hours'           => array('* 25  *  *  *', '25'),
+            'Invalid integer range day of month'    => array('*  * 32  *  *', '32'),
+            'Invalid integer range month'           => array('*  *  * 13  *', '13'),
+            'Invalid integer range day of week'     => array('*  *  *  *  8', '8'),
 
             'Invalid month name'                    => array('* * * Foo *', 'Foo'),
             'Invalid day of week name'              => array('* * * * Foo', 'Foo'),

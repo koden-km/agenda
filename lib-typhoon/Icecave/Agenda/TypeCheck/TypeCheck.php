@@ -15,6 +15,7 @@ abstract class TypeCheck
         if (null !== $arguments) {
             $validator->validateConstruct($arguments);
         }
+
         return $validator;
     }
 
@@ -41,6 +42,7 @@ abstract class TypeCheck
             static::defineValidator($className);
             static::$dummyMode = false;
         }
+
         return new $validatorClassName;
     }
 
