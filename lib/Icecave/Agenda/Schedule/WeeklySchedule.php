@@ -3,7 +3,6 @@ namespace Icecave\Agenda\Schedule;
 
 use Icecave\Agenda\TypeCheck\TypeCheck;
 use Icecave\Chrono\DateTime;
-use Icecave\Chrono\Detail\Calendar;
 use Icecave\Chrono\TimePointInterface;
 
 /**

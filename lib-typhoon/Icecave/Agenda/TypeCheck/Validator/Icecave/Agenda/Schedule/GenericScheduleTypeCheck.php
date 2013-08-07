@@ -6,36 +6,30 @@ class GenericScheduleTypeCheck extends \Icecave\Agenda\TypeCheck\AbstractValidat
     public function validateConstruct(array $arguments)
     {
         $argumentCount = \count($arguments);
-        if ($argumentCount < 5) {
+        if ($argumentCount < 6) {
             if ($argumentCount < 1) {
-                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('minute', 0, 'integer|string');
+                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('parser', 0, 'Icecave\\Agenda\\Parser\\CronParser');
             }
             if ($argumentCount < 2) {
-                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('hour', 1, 'integer|string');
+                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('minute', 1, 'integer|string');
             }
             if ($argumentCount < 3) {
-                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('dayOfMonth', 2, 'integer|string');
+                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('hour', 2, 'integer|string');
             }
             if ($argumentCount < 4) {
-                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('month', 3, 'integer|string');
+                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('dayOfMonth', 3, 'integer|string');
             }
-            throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('dayOfWeek', 4, 'integer|string');
-        } elseif ($argumentCount > 5) {
-            throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentException(5, $arguments[5]);
-        }
-        $value = $arguments[0];
-        if (!(\is_int($value) || \is_string($value))) {
-            throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentValueException(
-                'minute',
-                0,
-                $arguments[0],
-                'integer|string'
-            );
+            if ($argumentCount < 5) {
+                throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('month', 4, 'integer|string');
+            }
+            throw new \Icecave\Agenda\TypeCheck\Exception\MissingArgumentException('dayOfWeek', 5, 'integer|string');
+        } elseif ($argumentCount > 6) {
+            throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentException(6, $arguments[6]);
         }
         $value = $arguments[1];
         if (!(\is_int($value) || \is_string($value))) {
             throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentValueException(
-                'hour',
+                'minute',
                 1,
                 $arguments[1],
                 'integer|string'
@@ -44,7 +38,7 @@ class GenericScheduleTypeCheck extends \Icecave\Agenda\TypeCheck\AbstractValidat
         $value = $arguments[2];
         if (!(\is_int($value) || \is_string($value))) {
             throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentValueException(
-                'dayOfMonth',
+                'hour',
                 2,
                 $arguments[2],
                 'integer|string'
@@ -53,7 +47,7 @@ class GenericScheduleTypeCheck extends \Icecave\Agenda\TypeCheck\AbstractValidat
         $value = $arguments[3];
         if (!(\is_int($value) || \is_string($value))) {
             throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentValueException(
-                'month',
+                'dayOfMonth',
                 3,
                 $arguments[3],
                 'integer|string'
@@ -62,9 +56,18 @@ class GenericScheduleTypeCheck extends \Icecave\Agenda\TypeCheck\AbstractValidat
         $value = $arguments[4];
         if (!(\is_int($value) || \is_string($value))) {
             throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentValueException(
-                'dayOfWeek',
+                'month',
                 4,
                 $arguments[4],
+                'integer|string'
+            );
+        }
+        $value = $arguments[5];
+        if (!(\is_int($value) || \is_string($value))) {
+            throw new \Icecave\Agenda\TypeCheck\Exception\UnexpectedArgumentValueException(
+                'dayOfWeek',
+                5,
+                $arguments[5],
                 'integer|string'
             );
         }

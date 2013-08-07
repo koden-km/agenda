@@ -1,6 +1,7 @@
 <?php
 namespace Icecave\Agenda\Schedule;
 
+use Icecave\Agenda\Parser\CronParser;
 use Icecave\Agenda\TypeCheck\TypeCheck;
 use Icecave\Chrono\DateTime;
 use Icecave\Chrono\TimePointInterface;
@@ -11,7 +12,7 @@ use Icecave\Chrono\TimePointInterface;
 class GenericSchedule extends AbstractSchedule
 {
     /**
-     * @param CronParser $parser         The cron parser.
+     * @param CronParser     $parser     The cron parser.
      * @param integer|string $minute     The minute part or null for not applicable.
      * @param integer|string $hour       The hour part or null for not applicable.
      * @param integer|string $dayOfMonth The day of month part or null for not applicable.
@@ -42,10 +43,10 @@ class GenericSchedule extends AbstractSchedule
 
         return new DateTime(
             $timePoint->year(),
-            $timePoint->month() + $this->parser->parseMonth($expMonth, $timePoint),
-            $timePoint->day() + $this->parser->parseDay($expMonth, $timePoint),
-            $timePoint->hour() + $this->parser->parseHour($expHour, $timePoint),
-            $timePoint->minute() + $this->parser->parseMinute($expMinute, $timePoint),
+            $timePoint->month() + $this->parser->parseMonthExpression($this->expMonth, $timePoint),
+            $timePoint->day() + $this->parser->parseDayExpression($this->expDayOfMonth, $this->expDayOfWeek, $timePoint),
+            $timePoint->hour() + $this->parser->parseHourExpression($this->expHour, $timePoint),
+            $timePoint->minute() + $this->parser->parseMinuteExpression($this->expMinute, $timePoint),
             $timePoint->second()
         );
     }
