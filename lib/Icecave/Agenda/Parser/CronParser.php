@@ -25,6 +25,7 @@ class CronParser implements ParserInterface
     const PREDEFINED_YEARLY   = '@yearly';
     const PREDEFINED_ANNUALLY = '@annually'; // Same as YEARLY
 
+// TO DO: make these regex patterns so they will match tab and space seperators.
     const EXPRESSION_HOURLY   = '0 * * * *';
     const EXPRESSION_DAILY    = '0 0 * * *';
     const EXPRESSION_WEEKLY   = '0 0 * * 0';
@@ -114,6 +115,7 @@ class CronParser implements ParserInterface
     {
         TypeCheck::get(__CLASS__)->tryParsePredefinedExpressionFormat(func_get_args());
 
+// TO DO: make these regex patterns so they will match tab and space seperators.
         if ($expression === self::EXPRESSION_HOURLY) {
             $schedule = new HourlySchedule;
         } elseif ($expression === self::EXPRESSION_DAILY) {
