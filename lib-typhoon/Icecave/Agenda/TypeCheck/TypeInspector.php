@@ -21,7 +21,6 @@ class TypeInspector
         if ('resource' === $nativeType) {
             return $this->resourceType($value);
         }
-
         return $nativeType;
     }
 
@@ -38,7 +37,6 @@ class TypeInspector
         if ($value instanceof \Traversable) {
             $traversableSubTypes = $this->traversableSubTypes($value, $maxIterations);
         }
-
         return \sprintf('%s%s', $class, $traversableSubTypes);
     }
 
@@ -62,7 +60,6 @@ class TypeInspector
         \sort($keyTypes, SORT_STRING);
         $valueTypes = \array_unique($valueTypes);
         \sort($valueTypes, SORT_STRING);
-
         return \sprintf('<%s, %s>', \implode('|', $keyTypes), \implode('|', $valueTypes));
     }
 
@@ -72,7 +69,6 @@ class TypeInspector
         if ('stream' === $ofType) {
             return $this->streamType($value);
         }
-
         return \sprintf('resource {ofType: %s}', $ofType);
     }
 
@@ -89,7 +85,6 @@ class TypeInspector
         } else {
             $writable = 'false';
         }
-
         return \sprintf('stream {readable: %s, writable: %s}', $readable, $writable);
     }
 

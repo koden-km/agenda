@@ -14,7 +14,6 @@ abstract class AbstractValidator
         if (!$this->reflector->hasMethod($validatorMethodName)) {
             throw new \BadMethodCallException(\sprintf('Call to undefined method %s::%s().', __CLASS__, $name));
         }
-
         return $this->reflector->getMethod($validatorMethodName)->invokeArgs($this, $arguments);
     }
 
