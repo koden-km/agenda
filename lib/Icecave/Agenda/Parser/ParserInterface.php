@@ -14,8 +14,8 @@ interface ParserInterface
     public function parse($expression);
 
     /**
-     * @param string $expression
-     * @param ScheduleInterface|null &$schedule The schedule to store the parsed result in.
+     * @param string                 $expression
+     * @param ScheduleInterface|null &$schedule  The schedule to store the parsed result in.
      *
      * @return boolean True if the expression parsed successfully.
      */

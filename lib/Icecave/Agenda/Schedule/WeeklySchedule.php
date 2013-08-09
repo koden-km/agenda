@@ -3,7 +3,6 @@ namespace Icecave\Agenda\Schedule;
 
 use Icecave\Agenda\TypeCheck\TypeCheck;
 use Icecave\Chrono\DateTime;
-use Icecave\Chrono\Detail\Calendar;
 use Icecave\Chrono\TimePointInterface;
 
 /**
@@ -26,12 +25,7 @@ class WeeklySchedule extends AbstractSchedule
     {
         TypeCheck::get(__CLASS__)->firstEventFrom(func_get_args());
 
-        // TO DO: add some better public methods for day of week to Chrono/DateInterface
-        $dayOfWeek = Calendar::dayOfWeek(
-            $timePoint->year(),
-            $timePoint->month(),
-            $timePoint->day()
-        );
+        $dayOfWeek = $timePoint->isoDayOfWeek();
 
         if ($dayOfWeek === 7 &&
             $timePoint->hour() === 0 &&

@@ -4,10 +4,13 @@ namespace Icecave\Agenda\Parser;
 use Icecave\Agenda\Schedule\ScheduleInterface;
 use Icecave\Agenda\Schedule\HourlySchedule;
 use Icecave\Agenda\Schedule\DailySchedule;
-use Icecave\Agenda\Schedule\WeeklySchedule;
+use Icecave\Agenda\Schedule\GenericSchedule;
 use Icecave\Agenda\Schedule\MonthlySchedule;
+use Icecave\Agenda\Schedule\WeeklySchedule;
 use Icecave\Agenda\Schedule\YearlySchedule;
 use Icecave\Agenda\TypeCheck\TypeCheck;
+use Icecave\Chrono\DateTime;
+use Icecave\Chrono\TimePointInterface;
 use InvalidArgumentException;
 
 /**
@@ -15,13 +18,26 @@ use InvalidArgumentException;
  */
 class CronParser implements ParserInterface
 {
+    const PREDEFINED_HOURLY   = '@hourly';
+    const PREDEFINED_DAILY    = '@daily';
+    const PREDEFINED_WEEKLY   = '@weekly';
+    const PREDEFINED_MONTHLY  = '@monthly';
+    const PREDEFINED_YEARLY   = '@yearly';
+    const PREDEFINED_ANNUALLY = '@annually'; // Same as YEARLY
+
+    const EXPRESSION_HOURLY   = '0 * * * *';
+    const EXPRESSION_DAILY    = '0 0 * * *';
+    const EXPRESSION_WEEKLY   = '0 0 * * 0';
+    const EXPRESSION_MONTHLY  = '0 0 1 * *';
+    const EXPRESSION_YEARLY   = '0 0 1 1 *';
+
     public function __construct()
     {
         $this->typeCheck = TypeCheck::get(__CLASS__, func_get_args());
     }
 
     /**
-     * @param string $expression
+     * @param string $expression The cron expression to parse.
      *
      * @return ScheduleInterface
      * @throws InvalidArgumentException
@@ -39,8 +55,8 @@ class CronParser implements ParserInterface
     }
 
     /**
-     * @param string $expression
-     * @param ScheduleInterface|null &$schedule The schedule to store the parsed result in.
+     * @param string                 $expression The cron expression to parse.
+     * @param ScheduleInterface|null &$schedule  The schedule to store the parsed result in.
      *
      * @return boolean True if the expression parsed successfully.
      */
@@ -48,9 +64,9 @@ class CronParser implements ParserInterface
     {
         TypeCheck::get(__CLASS__)->tryParse(func_get_args());
 
-        if ($this->tryParseConstantFormat($expression, $schedule)) {
+        if ($this->tryParsePredefinedFormat($expression, $schedule)) {
             return true;
-        } else if ($this->tryParseColumnFormat($expression, $schedule)) {
+        } elseif ($this->tryParseExpressionFormat($expression, $schedule)) {
             return true;
         }
 
@@ -60,24 +76,24 @@ class CronParser implements ParserInterface
     /**
      * @link https://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions
      *
-     * @param string $expression
-     * @param ScheduleInterface|null &$schedule
+     * @param string                 $expression The cron expression to parse.
+     * @param ScheduleInterface|null &$schedule  The schedule to store the parsed result in.
      *
      * @return boolean
      */
-    public function tryParseConstantFormat($expression, ScheduleInterface &$schedule = null)
+    public function tryParsePredefinedFormat($expression, ScheduleInterface &$schedule = null)
     {
-        TypeCheck::get(__CLASS__)->tryParseConstantFormat(func_get_args());
+        TypeCheck::get(__CLASS__)->tryParsePredefinedFormat(func_get_args());
 
-        if (in_array($expression, array('@hourly', '0 * * * *'))) {
+        if ($expression === self::PREDEFINED_HOURLY) {
             $schedule = new HourlySchedule;
-        } else if (in_array($expression, array('@daily', '0 0 * * *'))) {
+        } elseif ($expression === self::PREDEFINED_DAILY) {
             $schedule = new DailySchedule;
-        } else if (in_array($expression, array('@weekly', '0 0 * * 0'))) {
+        } elseif ($expression === self::PREDEFINED_WEEKLY) {
             $schedule = new WeeklySchedule;
-        } else if (in_array($expression, array('@monthly', '0 0 1 * *'))) {
+        } elseif ($expression === self::PREDEFINED_MONTHLY) {
             $schedule = new MonthlySchedule;
-        } else if (in_array($expression, array('@yearly', '@annually', '0 0 1 1 *'))) {
+        } elseif ($expression === self::PREDEFINED_YEARLY || $expression === self::PREDEFINED_ANNUALLY) {
             $schedule = new YearlySchedule;
         } else {
             return false;
@@ -87,17 +103,51 @@ class CronParser implements ParserInterface
     }
 
     /**
-     * @param string $expression
-     * @param ScheduleInterface|null &$schedule
+     * @link https://en.wikipedia.org/wiki/Cron#Predefined_scheduling_definitions
+     *
+     * @param string                 $expression The cron expression to parse.
+     * @param ScheduleInterface|null &$schedule  The schedule to store the parsed result in.
      *
      * @return boolean
      */
-    public function tryParseColumnFormat($expression, ScheduleInterface &$schedule = null)
+    public function tryParsePredefinedExpressionFormat($expression, ScheduleInterface &$schedule = null)
     {
-        TypeCheck::get(__CLASS__)->tryParseColumnFormat(func_get_args());
+        TypeCheck::get(__CLASS__)->tryParsePredefinedExpressionFormat(func_get_args());
 
-        // TO DO
+        if ($expression === self::EXPRESSION_HOURLY) {
+            $schedule = new HourlySchedule;
+        } elseif ($expression === self::EXPRESSION_DAILY) {
+            $schedule = new DailySchedule;
+        } elseif ($expression === self::EXPRESSION_WEEKLY) {
+            $schedule = new WeeklySchedule;
+        } elseif ($expression === self::EXPRESSION_MONTHLY) {
+            $schedule = new MonthlySchedule;
+        } elseif ($expression === self::EXPRESSION_YEARLY) {
+            $schedule = new YearlySchedule;
+        } else {
+            return false;
+        }
 
+        return true;
+    }
+
+    /**
+     * @link https://en.wikipedia.org/wiki/Cron#CRON_expression
+     *
+     * @param string                 $expression The cron expression to parse.
+     * @param ScheduleInterface|null &$schedule  The schedule to store the parsed result in.
+     *
+     * @return boolean
+     */
+    public function tryParseExpressionFormat($expression, ScheduleInterface &$schedule = null)
+    {
+        TypeCheck::get(__CLASS__)->tryParseExpressionFormat(func_get_args());
+
+        if ($this->tryParsePredefinedExpressionFormat($expression, $schedule)) {
+            return true;
+        }
+
+        // TO DO: parse generic expression formats
         return false;
     }
 
