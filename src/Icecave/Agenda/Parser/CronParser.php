@@ -4,13 +4,10 @@ namespace Icecave\Agenda\Parser;
 use Icecave\Agenda\Schedule\ScheduleInterface;
 use Icecave\Agenda\Schedule\HourlySchedule;
 use Icecave\Agenda\Schedule\DailySchedule;
-use Icecave\Agenda\Schedule\GenericSchedule;
 use Icecave\Agenda\Schedule\MonthlySchedule;
 use Icecave\Agenda\Schedule\WeeklySchedule;
 use Icecave\Agenda\Schedule\YearlySchedule;
 use Icecave\Agenda\TypeCheck\TypeCheck;
-use Icecave\Chrono\DateTime;
-use Icecave\Chrono\TimePointInterface;
 use InvalidArgumentException;
 
 /**

@@ -8,7 +8,6 @@ use Icecave\Agenda\Schedule\DailySchedule;
 use Icecave\Agenda\Schedule\MonthlySchedule;
 use Icecave\Agenda\Schedule\WeeklySchedule;
 use Icecave\Agenda\Schedule\YearlySchedule;
-use Icecave\Chrono\DateTime;
 use PHPUnit_Framework_TestCase;
 
 class CronParserTest extends PHPUnit_Framework_TestCase

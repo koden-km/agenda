@@ -13,24 +13,28 @@
     ],
     "require": {
         "php": ">=5.3",
-        "eloquent/asplode": "~1",
         "icecave/chrono": "dev-develop@dev"
     },
     "require-dev": {
-        "eloquent/typhoon": "~0.9",
-        "icecave/archer": "~0.4"
+        "eloquent/typhoon": "~0.9.0",
+        "icecave/archer": "~1"
+    },
+    "suggest": {
+        "eloquent/asplode": "Drop-in exception-based error handling."
     },
     "autoload": {
         "psr-0": {
-            "Icecave\\Agenda": "lib",
-            "Icecave\\Agenda\\TypeCheck": "lib-typhoon"
+            "Icecave\\Agenda": "src",
+            "Icecave\\Agenda\\TypeCheck": "src-typhoon"
         }
     },
     "extra": {
         "typhoon": {
-            "output-path": "lib-typhoon",
+            "output-path": "src-typhoon",
             "validator-namespace": "Icecave\\Agenda\\TypeCheck",
             "use-native-callable": false
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
